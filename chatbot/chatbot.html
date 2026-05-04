@@ -42,13 +42,40 @@
             </div>
             );
         }
+
+        function ChatMessages(){
+              const chatMessages = [
+                {message: "hello chatbot", sender: "user",
+                id:'id1'
+                },
+                {message: "How can i help you?", sender: "robot",
+                    id:'id2'
+                },
+                {message: "I need help with my order", sender: "user", id:'id3'},
+                
+            ];
+            return(
+           <>
+          {chatMessages.map((chatMessage) => {
+               return (
+                 
+                <ChatMessage message={chatMessage.message} sender={chatMessage.sender}
+                key={chatMessage.id} />
+               
+             );
+            })}
+           
+        </>
+    );
+        }
+
         function App(){
+          
             return(
               
             <>
         <ChatInput />
-        <ChatMessage message="hello chatbot" sender="user"/>
-        <ChatMessage message="how are you?" sender="robot"/>
+        <ChatMessages />
         </>
             );
         }
