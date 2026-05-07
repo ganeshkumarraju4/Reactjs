@@ -9,14 +9,45 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
        
-        function ChatInput(){
+        function ChatInput({chatMessages, setChatMessages}){
+            const [inputText, setInputText] =  React.useState('');
+            function saveInputText(event){
+                setInputText(event.target.value);
+            }
+            function SendMessage(){
+                const newChatMessages = [...chatMessages, 
+                  {
+                message: inputText,
+                sender: 'user',
+                id: crypto.randomUUID()}
+               ];
+                  setChatMessages(newChatMessages);  
+
+              const response =  Chatbot.getResponse(inputText);
+                    setChatMessages([...newChatMessages, 
+                  {
+                message: response,
+                sender: 'robot',
+                id: crypto.randomUUID()}
+               ]);  
+
+               setInputText('');
+
+            }
             return(
                 <>
-                <input placeholder="Type your message..." size="40"></input>
-                <button>Send</button>
+                <input placeholder="Type your message..." size="40" 
+                onChange={saveInputText}
+                value={inputText}
+                />
+                <button
+                 onClick={SendMessage}
+                >Send</button>
                 </>
             );
         }
@@ -43,19 +74,18 @@
             );
         }
 
-        function ChatMessages(){
-              const chatMessages = [
-                {message: "hello chatbot", sender: "user",
-                id:'id1'
-                },
-                {message: "How can i help you?", sender: "robot",
-                    id:'id2'
-                },
-                {message: "I need help with my order", sender: "user", id:'id3'},
-                
-            ];
+        function ChatMessages({chatMessages}){
+
+          
+            // const [chatMessages, setChatMessages] = array;
+
+            // const chatMessages = array[0];
+            // const setChatMessages = array[1];
+             
+           
             return(
            <>
+          
           {chatMessages.map((chatMessage) => {
                return (
                  
@@ -70,12 +100,28 @@
         }
 
         function App(){
+            //lifted this state up
+             const [chatMessages, setChatMessages]  =  React.useState([
+                {message: "hello chatbot", sender: "user",
+                id:'id1'
+                },
+                {message: "How can i help you?", sender: "robot",
+                    id:'id2'
+                },
+                {message: "I need help with my order", sender: "user", id:'id3'},
+                
+            ]);
           
             return(
               
             <>
-        <ChatInput />
-        <ChatMessages />
+        <ChatInput 
+        chatMessages={chatMessages}
+        setChatMessages={setChatMessages}
+        />
+        <ChatMessages 
+        chatMessages={chatMessages}
+        />
         </>
             );
         }
