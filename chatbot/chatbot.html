@@ -73,6 +73,14 @@
             overflow: scroll;
             scrollbar-width: none;
         }
+        .welcome-message{
+            text-align: center;
+            color: rgb(71, 144, 246);
+        }
+        .loading-gif{
+            height: 40px;
+            margin:-15px;
+        }
     </style>
 
   </head>
@@ -86,6 +94,18 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+
+        function useAutoScroll(dependencies){
+             const containerref = React.useRef(null);
+        React.useEffect(() => {
+            const containerElem = containerref.current;
+            if(containerElem){
+                containerElem.scrollTop = containerElem.scrollHeight;   
+            }
+        }, dependencies);
+
+        return containerref;
+        }
        
         function ChatInput({chatMessages, setChatMessages}){
             const [inputText, setInputText] =  React.useState('');
@@ -93,6 +113,8 @@
                 setInputText(event.target.value);
             }
             async function SendMessage(){
+
+               
 
                 setInputText('');
                 const newChatMessages = [...chatMessages, 
@@ -104,7 +126,9 @@
                   setChatMessages([
                     ...newChatMessages,
                 {
-                    message: 'Loading...',
+                    message: <img src="loading-spinner.gif"
+                    className="loading-gif"
+                    ></img>,
                     sender: 'robot',
                     id: crypto.randomUUID()
                 }
@@ -171,20 +195,14 @@
         }
 
         function ChatMessages({chatMessages}){
-             const chatMessageref = React.useRef(null);
-        React.useEffect(() => {
-            const containerElem = chatMessageref.current;
-            if(containerElem){
-                containerElem.scrollTop = containerElem.scrollHeight;   
-            }
-        }, [chatMessages]);
+            
 
           
             // const [chatMessages, setChatMessages] = array;
 
             // const chatMessages = array[0];
             // const setChatMessages = array[1];
-             
+             const chatMessageref = useAutoScroll([chatMessages]);
            
             return(
            <div className="css-chat-messages-container"
@@ -205,21 +223,18 @@
 
         function App(){
             //lifted this state up
-             const [chatMessages, setChatMessages]  =  React.useState([
-                {message: "hello chatbot", sender: "user",
-                id:'id1'
-                },
-                {message: "How can i help you?", sender: "robot",
-                    id:'id2'
-                },
-                {message: "I need help with my order", sender: "user", id:'id3'},
-                
-            ]);
+             const [chatMessages, setChatMessages]  =  React.useState([]);
           
             return(
+           
               
             <div className="css-app-container">
-       
+                 {chatMessages.length === 0 && (
+              <p className="welcome-message">
+                Welcome to the chatbot project! Send a message using the textbox below.
+              </p>
+            )}
+                
         <ChatMessages 
         chatMessages={chatMessages}
         />

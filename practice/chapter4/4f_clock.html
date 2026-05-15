@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clock</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script type="text/babel"> 
+    
+        function Clock(){
+            const [time,settime] = React.useState(dayjs().format('hh:mm:ss'));
+            React.useEffect(() => {
+                 setInterval(() => {
+                    settime(dayjs().format('hh:mm:ss'));
+                    console.log('run');
+                }, 1000);
+                return () => clearInterval(interval);
+                
+            }, []);
+            return(
+                <div>
+                    <p>Current Time : {time}</p>
+                </div>
+            );
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<Clock />);
+    </script>
+  </body>
+</html>
