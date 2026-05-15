@@ -71,3 +71,19 @@
             height: 40px;
             margin:-15px;
         }
+       .chat-message-time {
+            font-size: 14px;
+            color: rgb(125, 125, 125);
+            margin-top: 5px; 
+       }
+       .css-clear-button{
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            margin-left: 10px;
+            margin-top: 10px;
+        
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }

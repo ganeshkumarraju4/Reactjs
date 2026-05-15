@@ -1,8 +1,10 @@
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import {Chatbot} from 'supersimpledev';
 import LoadingGif from '../assets/loading-spinner.gif';
 export  function ChatInput({chatMessages, setChatMessages}){
     const [inputText, setInputText] =  useState('');
+    
     function saveInputText(event){
         setInputText(event.target.value);
     }
@@ -15,14 +17,17 @@ export  function ChatInput({chatMessages, setChatMessages}){
             {
         message: inputText,
         sender: 'user',
-        id: crypto.randomUUID()}
+        id: crypto.randomUUID(),
+        time:dayjs().valueOf()
+    }
         ];
             setChatMessages([
             ...newChatMessages,
         {
             message: <img src={LoadingGif} className="loading-gif" />,
             sender: 'robot',
-            id: crypto.randomUUID()
+            id: crypto.randomUUID(),
+            time:dayjs().valueOf()
         }
     ]);  
 
@@ -31,7 +36,9 @@ export  function ChatInput({chatMessages, setChatMessages}){
             {
         message: response,
         sender: 'robot',
-        id: crypto.randomUUID()}
+        id: crypto.randomUUID(),
+        time:dayjs().valueOf()
+    }
         ]);  
 
         
@@ -57,6 +64,10 @@ export  function ChatInput({chatMessages, setChatMessages}){
             onClick={SendMessage}
             className="css-send-button"
         >Send</button>
+        <button
+            onClick={() => localStorage.removeItem('chatMessages') || setChatMessages([])}
+            className="css-clear-button"
+        >Clear</button>
         </div>
     );
 }

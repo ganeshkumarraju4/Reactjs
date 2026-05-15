@@ -18,7 +18,9 @@ import { ChatMessage } from './ChatMessage';
         {chatMessages.map((chatMessage) => {
             return (
                 
-            <ChatMessage message={chatMessage.message} sender={chatMessage.sender}
+            <ChatMessage 
+            message={chatMessage.message} sender={chatMessage.sender}
+            time={chatMessage.time}
             key={chatMessage.id} />
             
             );
