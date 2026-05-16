@@ -1,4 +1,4 @@
-import {Header} from '../components/Header'; ;
+import {Header} from '../components/header2'; ;
 import './Homepage.css';
 
 export function HomePage(){
