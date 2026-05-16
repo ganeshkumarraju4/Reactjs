@@ -1,4 +1,5 @@
 import './Orderspage.css';
+import { NavLink } from 'react-router';
 import {Header} from '../components/Header';
 
 export function OrdersPage() {
@@ -6,14 +7,15 @@ export function OrdersPage() {
         <>
         <title>Orders</title>
         <Header />
+         <link rel="icon" type="image/svg+xml" href="images/orders-favicon.png" />
           <div className="header">
       <div className="left-section">
-        <a href="/" className="header-link">
+        <NavLink to="/" className="header-link">
           <img className="logo"
             src="images/logo-white.png" />
           <img className="mobile-logo"
             src="images/mobile-logo-white.png" />
-        </a>
+        </NavLink>
       </div>
 
       <div className="middle-section">
@@ -25,16 +27,16 @@ export function OrdersPage() {
       </div>
 
       <div className="right-section">
-        <a className="orders-link header-link" href="/orders">
+        <NavLink className="orders-link header-link" to="/orders">
 
           <span className="orders-text">Orders</span>
-        </a>
+        </NavLink>
 
-        <a className="cart-link header-link" href="/checkout">
+        <NavLink className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="images/icons/cart-icon.png" />
           <div className="cart-quantity">3</div>
           <div className="cart-text">Cart</div>
-        </a>
+        </NavLink>
       </div>
     </div>
 
@@ -84,11 +86,11 @@ export function OrdersPage() {
             </div>
 
             <div className="product-actions">
-              <a href="/tracking">
+              <NavLink to="/tracking">
                 <button className="track-package-button button-secondary">
                   Track package
                 </button>
-              </a>
+              </NavLink>
             </div>
 
             <div className="product-image-container">
@@ -112,11 +114,11 @@ export function OrdersPage() {
             </div>
 
             <div className="product-actions">
-              <a href="/tracking">
+              <NavLink to="/tracking">
                 <button className="track-package-button button-secondary">
                   Track package
                 </button>
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -163,11 +165,11 @@ export function OrdersPage() {
             </div>
 
             <div className="product-actions">
-              <a href="/tracking">
+              <NavLink to="/tracking">
                 <button className="track-package-button button-secondary">
                   Track package
                 </button>
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
