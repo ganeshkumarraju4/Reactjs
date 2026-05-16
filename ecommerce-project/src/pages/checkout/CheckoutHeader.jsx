@@ -1,4 +1,7 @@
 import './CheckoutHeader.css';
+import MobileLogoWhite from '../../assets/images/mobile-logo-white.png';
+import Logo from '../../assets/images/logo.png';
+import CheckoutLock from '../../assets/images/checkout-lock-icon.png';
 import {NavLink} from 'react-router';
 export function CheckoutHeader() {
     return(
@@ -8,8 +11,8 @@ export function CheckoutHeader() {
                 <div className="checkout-header-left-section">
                 <NavLink
                  to="/">
-                    <img className="logo" src="images/logo.png" />
-                    <img className="mobile-logo" src="images/mobile-logo.png" />
+                    <img className="logo" src={Logo} />
+                    <img className="mobile-logo" src={MobileLogoWhite} />
                 </NavLink>
                 </div>
 
@@ -21,7 +24,7 @@ export function CheckoutHeader() {
                 </div>
 
                 <div className="checkout-header-right-section">
-                <img src="images/icons/checkout-lock-icon.png" />
+                <img src={CheckoutLock} />
                 </div>
             </div>
             </div>
