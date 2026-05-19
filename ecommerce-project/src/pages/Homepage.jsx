@@ -5,27 +5,24 @@ import {Header} from '../components/Header'; ;
 import HomeIcon from '../assets/images/home-favicon.png';
 import './Homepage.css';
 
-export function HomePage(){
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  
 
   useEffect(() =>{
-    axios.get('http://localhost:3000/api/products')
+    axios.get('/api/products')
     .then((response)=>{
        setProducts(response.data);
       });
-      axios.get('http://localhost:3000/api/cart-items ')
-      .then((response) =>{
-        setCartItems(response.data);
-      })
-  },[]);
+      
+      },[]);
 
   
      
     return(
         <>
         <title>Home</title>
-         <Header cart = {cartItems}/>
+         <Header cart = {cart}/>
        <link rel="icon" type="image/svg+xml" href={HomeIcon} />
     <div className="home-page">
       <div className="products-grid">
