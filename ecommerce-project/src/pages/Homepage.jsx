@@ -1,19 +1,32 @@
 import axios from 'axios';
+import {useEffect, useState} from 'react';
 import {Header} from '../components/Header'; ;
-import { products } from '../../starting-code/ecommerce-project-main/data/products';
+
+import HomeIcon from '../assets/images/home-favicon.png';
 import './Homepage.css';
 
 export function HomePage(){
-  axios.get('http://localhost:3000/api/products')
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() =>{
+    axios.get('http://localhost:3000/api/products')
     .then((response)=>{
-        console.log(response.data);
+       setProducts(response.data);
       });
+      axios.get('http://localhost:3000/api/cart-items ')
+      .then((response) =>{
+        setCartItems(response.data);
+      })
+  },[]);
+
+  
      
     return(
         <>
         <title>Home</title>
-         <Header />
-       <link rel="icon" type="image/svg+xml" href="images/home-favicon.png" />
+         <Header cart = {cartItems}/>
+       <link rel="icon" type="image/svg+xml" href={HomeIcon} />
     <div className="home-page">
       <div className="products-grid">
         {products.map((product) =>{

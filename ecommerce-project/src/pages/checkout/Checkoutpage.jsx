@@ -1,4 +1,5 @@
 import { CheckoutHeader } from './CheckoutHeader';
+import CartIcon from '../../assets/images/cart-favicon.png';
 
 import './Checkout.css';    
 
@@ -8,7 +9,7 @@ export function CheckoutPage() {
         <>
         <title>Checkout</title>
         <CheckoutHeader />
-         <link rel="icon" type="image/svg+xml" href="images/cart-favicon.png"  />
+         <link rel="icon" type="image/svg+xml" href={CartIcon}  />
 
             <div className="checkout-page">
             <div className="page-title">Review your order</div>

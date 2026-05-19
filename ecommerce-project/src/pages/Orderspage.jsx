@@ -4,6 +4,7 @@ import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
 import CartIcon from '../assets/images/cart-icon.png';
 import BuyAgainIcon from '../assets/images/buy-again.png';
 import SearchIcon from '../assets/images/search-icon.png';
+import OrderIcon from '../assets/images/orders-favicon.png';
 import { NavLink } from 'react-router';
 import {Header} from '../components/Header';
 
@@ -12,7 +13,7 @@ export function OrdersPage() {
         <>
         <title>Orders</title>
         <Header />
-         <link rel="icon" type="image/svg+xml" href="images/orders-favicon.png" />
+         <link rel="icon" type="image/svg+xml" href={OrderIcon} />
           <div className="header">
       <div className="left-section">
         <NavLink to="/" className="header-link">
