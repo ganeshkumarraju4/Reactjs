@@ -43,8 +43,8 @@
   margin-bottom: 15px;
 }
 
-.tracking-page .current-status {
-  color: rgb(25, 135, 84);
+.tracking-page  .current-status {
+  color: rgb(214, 18, 18);
 }
 
 @media (max-width: 575px) {
