@@ -2,14 +2,14 @@ import './Orderspage.css';
 import { useState, useEffect ,Fragment} from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import LogoWhite from '../assets/images/logo-white.png';
-import MobileLogoWhite from '../assets/images/mobile-logo-white.png';
-import CartIcon from '../assets/images/cart-icon.png';
-import BuyAgainIcon from '../assets/images/buy-again.png';
-import SearchIcon from '../assets/images/search-icon.png';
-import OrderIcon from '../assets/images/orders-favicon.png';
+import LogoWhite from '../../assets/images/logo-white.png';
+import MobileLogoWhite from '../../assets/images/mobile-logo-white.png';
+import CartIcon from '../../assets/images/cart-icon.png';
+import BuyAgainIcon from '../../assets/images/buy-again.png';
+import SearchIcon from '../../assets/images/search-icon.png';
+import OrderIcon from '../../assets/images/orders-favicon.png';
 import { NavLink } from 'react-router';
-import {Header} from '../components/Header';
+import {Header} from '../../components/Header';
 
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
