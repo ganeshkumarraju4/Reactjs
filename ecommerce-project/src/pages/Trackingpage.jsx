@@ -70,7 +70,7 @@ export function TrackingPage({cart}){
             Preparing
           </div>
           <div className={`progress-label ${isShipped && 'current-status'}`}
-          >
+           >
             Shipped
           </div>
           <div className={`progress-label ${isDelivered && 'current-status'}`}>
