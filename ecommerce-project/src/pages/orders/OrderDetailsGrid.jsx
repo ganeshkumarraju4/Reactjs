@@ -1,20 +1,29 @@
 import dayjs from 'dayjs';
-import {Fragment} from 'react';
-import {NavLink} from 'react-router';
+import axios from 'axios';
+import { Fragment } from 'react';
+import { NavLink } from 'react-router';
 import BuyAgainIcon from '../../assets/images/buy-again.png';
-export function OrderDetailsGrid({order}){
-    return(
-         <div className="order-details-grid">
-            {order.products.map((orderProduct)=>{
-              return(
-                <Fragment key={orderProduct.product.id}>
-                   <div className="product-image-container">
+export function OrderDetailsGrid({ order ,loadCart}) {
+ 
+  return (
+    <div className="order-details-grid">
+      {order.products.map((orderProduct) => {
+         const addToCart = async ()=>{
+      await axios.post('/api/cart-items',{
+        productId : orderProduct.product.id,
+        quantity: 1
+      });
+       await loadCart();  
+      };
+        return (
+          <Fragment key={orderProduct.product.id}>
+            <div className="product-image-container">
               <img src={orderProduct.product.image} />
             </div>
 
             <div className="product-details">
               <div className="product-name">
-               { orderProduct.product.name }
+                {orderProduct.product.name}
               </div>
               <div className="product-delivery-date">
                 Arriving on:{dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
@@ -24,7 +33,8 @@ export function OrderDetailsGrid({order}){
               </div>
               <button className="buy-again-button button-primary">
                 <img className="buy-again-icon" src={BuyAgainIcon} />
-                <span className="buy-again-message">Add to Cart</span>
+                <span className="buy-again-message"
+                onClick={addToCart}>Add to Cart</span>
               </button>
             </div>
 
@@ -35,10 +45,10 @@ export function OrderDetailsGrid({order}){
                 </button>
               </NavLink>
             </div>
-                </Fragment>
-              );
-            })}
-            
-          </div>
-    );
+          </Fragment>
+        );
+      })}
+
+    </div>
+  );
 }
